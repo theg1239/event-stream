@@ -21,8 +21,10 @@ export interface PollResult {
 }
 
 async function fetchJson<T>(url: string): Promise<T> {
-  const response = await fetch(url, { method: "GET"
-  });
+  const fetchInit = config.skipTlsVerify
+    ? ({ method: "GET", tls: { rejectUnauthorized: false } } as RequestInit)
+    : ({ method: "GET" } as RequestInit);
+  const response = await fetch(url, fetchInit);
 
   if (!response.ok) {
     throw new Error(`Request failed ${response.status} for ${url}`);
@@ -31,13 +33,21 @@ async function fetchJson<T>(url: string): Promise<T> {
   return (await response.json()) as T;
 }
 
+function requireBaseUrl() {
+  if (!config.baseUrl) {
+    throw new Error("BASE_URL must be set to a valid absolute URL (e.g. https://riviera.vit.ac.in).");
+  }
+  return config.baseUrl;
+}
+
 async function fetchEventList(eventType: EventType) {
   const all: EventListItem[] = [];
   let offset = 0;
   const limit = Math.max(1, config.pageLimit);
+  const baseUrl = requireBaseUrl();
 
   while (true) {
-    const url = new URL("/api/events", config.baseUrl || "");
+    const url = new URL("/api/events", baseUrl);
     url.searchParams.set("type", eventType);
     url.searchParams.set("offset", offset.toString());
     url.searchParams.set("limit", limit.toString());
@@ -58,7 +68,8 @@ async function fetchEventList(eventType: EventType) {
 }
 
 async function fetchEventDetail(eventCode: string) {
-  const url = new URL(`/api/events/${eventCode}`, config.baseUrl || "");
+  const baseUrl = requireBaseUrl();
+  const url = new URL(`/api/events/${eventCode}`, baseUrl);
   return fetchJson<EventDetail>(url.toString());
 }
 

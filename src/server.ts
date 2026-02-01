@@ -95,12 +95,12 @@ export function startServer(options: ServerOptions = {}) {
 
   const server = Bun.serve({
     port: config.port,
-    async fetch(req) {
+    async fetch(req: Request) {
       if (req.method === "OPTIONS") {
         return new Response(null, { status: 204, headers: baseHeaders });
       }
 
-      const url = new URL(req.url);
+      const url = new URL(req.url, `http://localhost:${config.port}`);
 
       if (url.pathname === "/stream") {
         let controllerRef: ReadableStreamDefaultController | null = null;
