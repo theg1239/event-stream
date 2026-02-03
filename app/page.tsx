@@ -1,3 +1,4 @@
+// Dashboard overview page with real-time streaming
 "use client"
 
 import { useState, useCallback } from "react"

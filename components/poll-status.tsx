@@ -1,3 +1,4 @@
+// Poll status card with manual trigger
 "use client"
 
 import { cn } from "@/lib/utils"

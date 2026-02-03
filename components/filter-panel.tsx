@@ -1,9 +1,9 @@
+// Filter panel with search and dropdown filters
 "use client"
 
 import { cn } from "@/lib/utils"
 import { Search, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 
 interface FilterOption {
   value: string
@@ -38,12 +38,12 @@ export function FilterPanel({
       {onSearchChange && (
         <div className="relative flex-1 max-w-sm">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-          <Input
+          <input
             type="text"
             value={searchValue || ""}
             onChange={(e) => onSearchChange(e.target.value)}
             placeholder={searchPlaceholder}
-            className="pl-9 bg-secondary border-border"
+            className="w-full h-9 pl-9 pr-3 rounded-md border border-border bg-secondary text-sm focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background"
           />
           {searchValue && (
             <button

@@ -1,3 +1,4 @@
+// Stats card with trend indicators
 "use client"
 
 import { cn } from "@/lib/utils"
