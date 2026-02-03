@@ -32,7 +32,6 @@ import {
 } from "lucide-react"
 import { format, parseISO } from "date-fns"
 import { cn } from "@/lib/utils"
-import ReactMarkdown from "react-markdown"
 
 interface PageProps {
   params: Promise<{ eventCode: string }>
@@ -250,8 +249,8 @@ export default function EventDetailPage({ params }: PageProps) {
                   <FileText className="h-5 w-5 text-muted-foreground" />
                   <h2 className="font-medium">Description</h2>
                 </div>
-                <div className="prose prose-invert prose-sm max-w-none">
-                  <ReactMarkdown>{detail.long_description_md}</ReactMarkdown>
+                <div className="prose prose-invert prose-sm max-w-none whitespace-pre-wrap">
+                  {detail.long_description_md}
                 </div>
               </div>
             )}
@@ -263,8 +262,8 @@ export default function EventDetailPage({ params }: PageProps) {
                   <Hash className="h-5 w-5 text-muted-foreground" />
                   <h2 className="font-medium">Rules</h2>
                 </div>
-                <div className="prose prose-invert prose-sm max-w-none">
-                  <ReactMarkdown>{detail.rules}</ReactMarkdown>
+                <div className="prose prose-invert prose-sm max-w-none whitespace-pre-wrap">
+                  {detail.rules}
                 </div>
               </div>
             )}
@@ -276,8 +275,8 @@ export default function EventDetailPage({ params }: PageProps) {
                   <Trophy className="h-5 w-5 text-accent" />
                   <h2 className="font-medium">Prizes</h2>
                 </div>
-                <div className="prose prose-invert prose-sm max-w-none">
-                  <ReactMarkdown>{detail.prizes}</ReactMarkdown>
+                <div className="prose prose-invert prose-sm max-w-none whitespace-pre-wrap">
+                  {detail.prizes}
                 </div>
               </div>
             )}
@@ -289,8 +288,8 @@ export default function EventDetailPage({ params }: PageProps) {
                   <Star className="h-5 w-5 text-chart-3" />
                   <h2 className="font-medium">Judgement Criteria</h2>
                 </div>
-                <div className="prose prose-invert prose-sm max-w-none">
-                  <ReactMarkdown>{detail.judgement_criteria}</ReactMarkdown>
+                <div className="prose prose-invert prose-sm max-w-none whitespace-pre-wrap">
+                  {detail.judgement_criteria}
                 </div>
               </div>
             )}
