@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils"
 import { format, parseISO } from "date-fns"
-import { Calendar, MapPin, Users, DollarSign, ChevronRight } from "lucide-react"
+import { Calendar, ChevronRight } from "lucide-react"
 import Link from "next/link"
 import type { EventRecord } from "@/lib/api"
 

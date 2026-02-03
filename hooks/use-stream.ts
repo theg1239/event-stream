@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState, useCallback, useRef } from "react"
-import { createEventStream, type Snapshot, type EventRecord, type PollRun } from "@/lib/api"
+import { createEventStream, type Snapshot } from "@/lib/api"
 
 export interface StreamState {
   connected: boolean
@@ -50,7 +50,7 @@ export function useEventStream() {
       ...prev,
       recentActivity: [
         { ...item, id: String(++activityIdRef.current) },
-        ...prev.recentActivity.slice(0, 99) // Keep last 100
+        ...prev.recentActivity.slice(0, 99)
       ]
     }))
   }, [])

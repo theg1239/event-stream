@@ -24,7 +24,6 @@ export function Navigation({ connected }: NavigationProps) {
       <div className="mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-14 items-center justify-between">
           <div className="flex items-center gap-8">
-            {/* Logo */}
             <Link href="/" className="flex items-center gap-2">
               <div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary/10">
                 <Radio className="h-4 w-4 text-primary" />
@@ -32,7 +31,6 @@ export function Navigation({ connected }: NavigationProps) {
               <span className="font-semibold tracking-tight">Event Stream</span>
             </Link>
 
-            {/* Nav Items */}
             <nav className="hidden md:flex items-center gap-1">
               {navItems.map(({ href, label, icon: Icon }) => {
                 const isActive = href === "/" ? pathname === "/" : pathname.startsWith(href)
@@ -55,7 +53,6 @@ export function Navigation({ connected }: NavigationProps) {
             </nav>
           </div>
 
-          {/* Connection Status */}
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-2 text-sm">
               <div className="relative flex items-center justify-center">

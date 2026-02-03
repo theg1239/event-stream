@@ -14,7 +14,6 @@ export default function ActivityPage() {
       <Navigation connected={stream.connected} />
 
       <main className="mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8 py-6">
-        {/* Header */}
         <div className="flex items-start justify-between mb-6">
           <div>
             <h1 className="text-2xl font-semibold tracking-tight">Live Activity</h1>
@@ -52,7 +51,6 @@ export default function ActivityPage() {
           </div>
         </div>
 
-        {/* Stream Status */}
         <div className="grid md:grid-cols-3 gap-4 mb-6">
           <div className="rounded-lg border border-border bg-card p-4">
             <div className="flex items-center gap-2 mb-2">
@@ -97,7 +95,6 @@ export default function ActivityPage() {
           </div>
         </div>
 
-        {/* Poll Summary */}
         {stream.pollSummary && (
           <div className="rounded-lg border border-primary/30 bg-primary/5 p-4 mb-6">
             <div className="flex items-center gap-2 mb-3">
@@ -136,7 +133,6 @@ export default function ActivityPage() {
           </div>
         )}
 
-        {/* Activity Feed */}
         <div className="rounded-lg border border-border bg-card p-4">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">

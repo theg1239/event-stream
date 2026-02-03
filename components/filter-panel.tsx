@@ -1,7 +1,7 @@
 "use client"
 
 import { cn } from "@/lib/utils"
-import { Search, X, Filter } from "lucide-react"
+import { Search, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 
@@ -35,7 +35,6 @@ export function FilterPanel({
 
   return (
     <div className={cn("flex flex-col sm:flex-row gap-3", className)}>
-      {/* Search */}
       {onSearchChange && (
         <div className="relative flex-1 max-w-sm">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -57,7 +56,6 @@ export function FilterPanel({
         </div>
       )}
 
-      {/* Filter buttons */}
       <div className="flex items-center gap-2 flex-wrap">
         {filters.map((filter) => (
           <div key={filter.key} className="flex items-center gap-1">

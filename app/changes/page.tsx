@@ -63,7 +63,6 @@ export default function ChangesPage() {
   const hasMore = changeItems.length === filters.limit
   const currentPage = Math.floor(filters.offset / filters.limit) + 1
 
-  // Stats from rollups
   const stats = {
     inserts: rollups?.items.filter((r) => r.change_kind === "insert").reduce((acc, r) => acc + Number(r.count), 0) ?? 0,
     updates: rollups?.items.filter((r) => r.change_kind === "update").reduce((acc, r) => acc + Number(r.count), 0) ?? 0,
@@ -76,7 +75,6 @@ export default function ChangesPage() {
       <Navigation connected={stream.connected} />
 
       <main className="mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8 py-6">
-        {/* Header */}
         <div className="mb-6">
           <h1 className="text-2xl font-semibold tracking-tight">Change History</h1>
           <p className="text-muted-foreground mt-1">
@@ -84,7 +82,6 @@ export default function ChangesPage() {
           </p>
         </div>
 
-        {/* Stats */}
         <div className="grid grid-cols-3 gap-4 mb-6">
           <button
             onClick={() =>
@@ -177,7 +174,6 @@ export default function ChangesPage() {
           </button>
         </div>
 
-        {/* Chart */}
         <div className="rounded-lg border border-border bg-card p-4 mb-6">
           <div className="flex items-center gap-2 mb-4">
             <BarChart3 className="h-5 w-5 text-muted-foreground" />
@@ -186,7 +182,6 @@ export default function ChangesPage() {
           <DailyChart data={rollups?.items ?? []} days={14} variant="bar" />
         </div>
 
-        {/* Filters */}
         <div className="mb-6">
           <FilterPanel
             filters={[
@@ -224,7 +219,6 @@ export default function ChangesPage() {
           />
         </div>
 
-        {/* Timeline */}
         <div className="rounded-lg border border-border bg-card p-4">
           <div className="flex items-center gap-2 mb-4">
             <GitCommit className="h-5 w-5 text-muted-foreground" />
@@ -239,7 +233,6 @@ export default function ChangesPage() {
             <ChangesTimeline changes={changeItems} showDiffs />
           )}
 
-          {/* Pagination */}
           {changeItems.length > 0 && (
             <div className="flex items-center justify-between pt-4 mt-4 border-t border-border">
               <p className="text-sm text-muted-foreground">

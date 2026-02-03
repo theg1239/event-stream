@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils"
 import { format, parseISO } from "date-fns"
-import { GitMerge, Plus, Trash2, RefreshCw, FileText, Calendar } from "lucide-react"
+import { Plus, Trash2, RefreshCw, Calendar } from "lucide-react"
 import Link from "next/link"
 import type { EventChange } from "@/lib/api"
 import { ChangeDiff } from "./change-diff"
@@ -13,7 +13,7 @@ interface ChangesTimelineProps {
   showDiffs?: boolean
 }
 
-function getChangeIcon(kind: string, entity: string) {
+function getChangeIcon(kind: string) {
   if (kind === "insert") return Plus
   if (kind === "remove") return Trash2
   return RefreshCw
@@ -41,7 +41,6 @@ export function ChangesTimeline({ changes, className, showDiffs = true }: Change
     )
   }
 
-  // Group changes by date
   const groupedChanges = changes.reduce((acc, change) => {
     const date = format(parseISO(change.fetched_at), "yyyy-MM-dd")
     if (!acc[date]) acc[date] = []
@@ -66,11 +65,10 @@ export function ChangesTimeline({ changes, className, showDiffs = true }: Change
           </div>
 
           <div className="space-y-3 relative">
-            {/* Timeline line */}
             <div className="absolute left-[15px] top-2 bottom-2 w-px bg-border" />
 
             {dayChanges.map((change) => {
-              const Icon = getChangeIcon(change.change_kind, change.entity_type)
+              const Icon = getChangeIcon(change.change_kind)
               const colorClass = getChangeColor(change.change_kind)
 
               return (
@@ -78,7 +76,6 @@ export function ChangesTimeline({ changes, className, showDiffs = true }: Change
                   key={change.id}
                   className="relative flex gap-4 pl-9"
                 >
-                  {/* Timeline dot */}
                   <div className={cn(
                     "absolute left-0 top-1 h-8 w-8 rounded-full border-2 flex items-center justify-center",
                     colorClass
@@ -86,7 +83,6 @@ export function ChangesTimeline({ changes, className, showDiffs = true }: Change
                     <Icon className="h-3.5 w-3.5" />
                   </div>
 
-                  {/* Content */}
                   <div className="flex-1 rounded-lg border border-border bg-card p-4 card-hover">
                     <div className="flex items-start justify-between gap-4 mb-2">
                       <div>
@@ -118,7 +114,6 @@ export function ChangesTimeline({ changes, className, showDiffs = true }: Change
                       </time>
                     </div>
 
-                    {/* Meta info */}
                     {(change.club || change.category) && (
                       <div className="flex items-center gap-3 text-xs text-muted-foreground mb-3">
                         {change.club && <span>{change.club}</span>}
@@ -127,7 +122,6 @@ export function ChangesTimeline({ changes, className, showDiffs = true }: Change
                       </div>
                     )}
 
-                    {/* Diff */}
                     {showDiffs && change.diff && Array.isArray(change.diff) && change.diff.length > 0 && (
                       <ChangeDiff 
                         diff={change.diff as Array<{ key: string; before: unknown; after: unknown }>} 

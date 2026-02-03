@@ -54,7 +54,6 @@ export default function EventsPage() {
       <Navigation connected={stream.connected} />
 
       <main className="mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8 py-6">
-        {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
           <div>
             <h1 className="text-2xl font-semibold tracking-tight">Events</h1>
@@ -91,7 +90,6 @@ export default function EventsPage() {
           </div>
         </div>
 
-        {/* Filters */}
         <div className="mb-6">
           <FilterPanel
             searchValue={filters.search}
@@ -134,7 +132,6 @@ export default function EventsPage() {
           />
         </div>
 
-        {/* Content */}
         <div className="rounded-lg border border-border bg-card">
           {isLoading ? (
             <div className="p-12 text-center text-muted-foreground">
@@ -207,7 +204,6 @@ export default function EventsPage() {
             </div>
           )}
 
-          {/* Pagination */}
           {events.length > 0 && (
             <div className="flex items-center justify-between px-4 py-3 border-t border-border">
               <p className="text-sm text-muted-foreground">

@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState, useCallback } from "react"
+import { useState, useCallback } from "react"
 import useSWR from "swr"
 import { Navigation } from "@/components/navigation"
 import { StatsCard } from "@/components/stats-card"
@@ -36,7 +36,6 @@ export default function DashboardPage() {
   const stream = useEventStream()
   const [isPolling, setIsPolling] = useState(false)
 
-  // Fetch data with SWR
   const { data: health, mutate: mutateHealth } = useSWR<HealthResponse>(
     "health",
     fetchHealth,
@@ -61,7 +60,6 @@ export default function DashboardPage() {
     { refreshInterval: 30000 }
   )
 
-  // Calculate stats from rollups
   const stats = {
     totalInserts: rollups?.items.filter(r => r.change_kind === "insert").reduce((acc, r) => acc + Number(r.count), 0) ?? 0,
     totalUpdates: rollups?.items.filter(r => r.change_kind === "update").reduce((acc, r) => acc + Number(r.count), 0) ?? 0,
@@ -80,7 +78,6 @@ export default function DashboardPage() {
     }
   }, [mutateHealth])
 
-  // Use snapshot data if available
   const counts = stream.snapshot?.counts ?? health?.counts
   const lastPoll = stream.snapshot?.lastPoll ?? health?.lastPoll
 
@@ -89,7 +86,6 @@ export default function DashboardPage() {
       <Navigation connected={stream.connected} />
 
       <main className="mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8 py-6">
-        {/* Header */}
         <div className="mb-8">
           <h1 className="text-2xl font-semibold tracking-tight">Overview</h1>
           <p className="text-muted-foreground mt-1">
@@ -97,7 +93,6 @@ export default function DashboardPage() {
           </p>
         </div>
 
-        {/* Stats Grid */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6 stagger-children">
           <StatsCard
             title="Active Events"
@@ -128,11 +123,8 @@ export default function DashboardPage() {
           />
         </div>
 
-        {/* Main Content Grid */}
         <div className="grid lg:grid-cols-3 gap-6">
-          {/* Left Column - Charts & Tables */}
           <div className="lg:col-span-2 space-y-6">
-            {/* Activity Chart */}
             <div className="rounded-lg border border-border bg-card p-4">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
@@ -153,7 +145,6 @@ export default function DashboardPage() {
               <DailyChart data={rollups?.items ?? []} days={14} />
             </div>
 
-            {/* Recent Events */}
             <div className="rounded-lg border border-border bg-card p-4">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
@@ -173,7 +164,6 @@ export default function DashboardPage() {
               />
             </div>
 
-            {/* Poll Status */}
             <PollStatus
               lastPoll={lastPoll}
               liveSummary={stream.pollSummary}
@@ -182,9 +172,7 @@ export default function DashboardPage() {
             />
           </div>
 
-          {/* Right Column - Live Activity */}
           <div className="space-y-6">
-            {/* Live Activity Feed */}
             <div className="rounded-lg border border-border bg-card p-4">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
@@ -204,7 +192,6 @@ export default function DashboardPage() {
               />
             </div>
 
-            {/* Quick Stats */}
             <div className="rounded-lg border border-border bg-card p-4">
               <div className="flex items-center gap-2 mb-4">
                 <TrendingUp className="h-5 w-5 text-muted-foreground" />
@@ -258,7 +245,6 @@ export default function DashboardPage() {
               </div>
             </div>
 
-            {/* Recent Changes Summary */}
             <div className="rounded-lg border border-border bg-card p-4">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">

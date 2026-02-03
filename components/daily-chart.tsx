@@ -10,7 +10,6 @@ import {
   XAxis,
   YAxis,
   Tooltip,
-  Legend,
   CartesianGrid,
 } from "recharts"
 import { format, parseISO, subDays, eachDayOfInterval } from "date-fns"
@@ -30,7 +29,6 @@ export function DailyChart({ data, days = 14, variant = "area", className }: Dai
     const startDate = subDays(endDate, days - 1)
     const dateRange = eachDayOfInterval({ start: startDate, end: endDate })
 
-    // Group data by day
     const grouped = new Map<string, {
       inserts: number
       updates: number

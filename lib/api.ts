@@ -240,7 +240,7 @@ export function createEventStream(
     onOpen?.()
   }
   
-  eventSource.onerror = (e) => {
+  eventSource.onerror = () => {
     onError?.(new Error("Stream connection error"))
   }
   
