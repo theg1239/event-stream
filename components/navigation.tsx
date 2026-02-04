@@ -1,4 +1,3 @@
-// Navigation component with live status indicator
 "use client"
 
 import Link from "next/link"

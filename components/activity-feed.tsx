@@ -1,4 +1,3 @@
-// Activity feed component for real-time event updates
 "use client"
 
 import { cn } from "@/lib/utils"

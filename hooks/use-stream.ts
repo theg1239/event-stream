@@ -1,4 +1,3 @@
-// SSE stream hook for real-time event updates
 "use client"
 
 import { useEffect, useState, useCallback, useRef } from "react"

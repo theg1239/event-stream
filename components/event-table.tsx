@@ -1,4 +1,3 @@
-// Event table with compact and full view modes
 "use client"
 
 import { cn } from "@/lib/utils"

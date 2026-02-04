@@ -1,4 +1,3 @@
-// Changes timeline grouped by day with expandable diffs
 "use client"
 
 import { cn } from "@/lib/utils"

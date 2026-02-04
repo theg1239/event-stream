@@ -1,4 +1,3 @@
-// Daily activity chart with area and bar variants
 "use client"
 
 import { useMemo } from "react"
